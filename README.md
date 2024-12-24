@@ -161,15 +161,15 @@ cd SIMULADOR-BANCO-BPC-BACKEND
 
 ### 2. Navega a la carpeta Deploy y selecciona el script correspondiente al entorno 🌍
 
-## Para desarrollo (dev) 🛠️
+#### Para desarrollo (dev) 🛠️
 echo "Desplegando en el entorno de desarrollo (dev)..."
 sh scripts/deploy-dev.sh
 
-## Para pruebas (test) 🧪
+#### Para pruebas (test) 🧪
 echo "Desplegando en el entorno de pruebas (test)..."
 sh scripts/deploy-test.sh
 
-## Para producción (prod) 🌟
+#### Para producción (prod) 🌟
 echo "Desplegando en el entorno de producción (prod)..."
 sh scripts/deploy-prod.sh
 
