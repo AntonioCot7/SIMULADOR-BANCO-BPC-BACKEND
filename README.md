@@ -154,68 +154,68 @@ El backend implementa un sistema de seguridad basado en tokens para la autentica
 
 ## Pasos para desplegar los servicios 📦
 
-### 1. Clona el repositorio desde GitHub 🖥️
+#### 1. Clona el repositorio desde GitHub 🖥️
 ```bash
 git clone https://github.com/AntonioCot7/SIMULADOR-BANCO-BPC-BACKEND.git
 cd SIMULADOR-BANCO-BPC-BACKEND
 ```
 
-### 2. Navega a la carpeta Deploy y selecciona el script correspondiente al entorno 🌍
+#### 2. Navega a la carpeta Deploy y selecciona el script correspondiente al entorno 🌍
 
-#### Para desarrollo (dev) 🛠️
+##### Para desarrollo (dev) 🛠️
 ```bash
 sh scripts/deploy-dev.sh
 ```
 
-#### Para pruebas (test) 🧪
+##### Para pruebas (test) 🧪
 ```bash
 sh scripts/deploy-test.sh
 ```
 
-#### Para producción (prod) 🌟
+##### Para producción (prod) 🌟
 ```bash
 sh scripts/deploy-prod.sh
 ```
 
-## Durante el despliegue ⚙️
+### Durante el despliegue ⚙️
 
-### 3. Instalación de dependencias automáticamente para servicios en Node.js 🚀
+#### 3. Instalación de dependencias automáticamente para servicios en Node.js 🚀
 ```bash
 npm install  # Incluye uuid y aws-sdk
 ```
 
-### 4. Despliegue de cada microservicio utilizando serverless deploy 🔥
+#### 4. Despliegue de cada microservicio utilizando serverless deploy 🔥
 ```bash
 npx serverless deploy --stage <STAGE>
 ```
 
-## Para eliminar recursos 🔥🚮
+### Para eliminar recursos 🔥🚮
 
-### 5. Elimina los recursos de un entorno específico cuando ya no sean necesarios 💥
+#### 5. Elimina los recursos de un entorno específico cuando ya no sean necesarios 💥
 
-#### Usa los scripts correspondientes para eliminar los recursos del entorno elegido
+##### Usa los scripts correspondientes para eliminar los recursos del entorno elegido
 
-## Para desarrollo (dev) 🧹
+##### Para desarrollo (dev) 🧹
 ```bash
 sh scripts/remove-dev.sh
 ```
 
-## Para pruebas (test) 🧽
+##### Para pruebas (test) 🧽
 ```bash
 sh scripts/remove-test.sh
 ```
 
-## Para producción (prod) 🧨
+##### Para producción (prod) 🧨
 ```bash
 sh scripts/remove-prod.sh
 ```
 
-## Postman Collection 📬
+### Postman Collection 📬
 
-### 6. El archivo de colección de Postman está configurado para el entorno dev, pero se puede usar también en prod o test 🌟
+#### 6. El archivo de colección de Postman está configurado para el entorno dev, pero se puede usar también en prod o test 🌟
 
-## Recursos adicionales 📚
+### Recursos adicionales 📚
 
-### 7. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
+#### 7. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
 **Detalles de las tablas**: [Spreadsheets](https://docs.google.com/spreadsheets/d/1ZrNYsk9QapbMuMr6at_sfBPg8t-TYu4w1VwyiUadsfo/edit?gid=0#gid=0) 🔗
 
