@@ -15,6 +15,11 @@ El backend se utiliza para gestionar los datos y la lógica de negocio del simul
 
 ---
 
+## Entidad Relación entre Microservicios
+- <img src="assets/entidad_relacion.png" alt="Entidad Relacion entre Microservicios" style="border: 2px solid white; width: 400px; height: auto;" />
+
+---
+
 ## Descripción de los Microservicios 💡
 
 El sistema está dividido en varios microservicios, organizados en dos categorías: **Python** y **Node.js**.
