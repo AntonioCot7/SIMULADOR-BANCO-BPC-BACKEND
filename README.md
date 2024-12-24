@@ -132,7 +132,7 @@ El sistema está dividido en varios microservicios, organizados en dos categorí
 
 La arquitectura se basa en **microservicios independientes** que se comunican entre sí a través de **API Gateway** y utilizan **AWS Lambda** para procesar las solicitudes. Los datos se almacenan en **DynamoDB**, utilizando tablas específicas para cada microservicio.
 
-![Arquitectura Solución](imagen_referencial_de_arquitectura.png)
+- <img src="assets/arquitectura_solucion.png" alt="Referencia de Arquitectura Solucion" style="border: 2px solid white; width: 400px; height: auto;" />
 
 ---
 
