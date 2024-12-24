@@ -177,7 +177,7 @@ sh scripts/deploy-test.sh
 sh scripts/deploy-prod.sh
 ```
 
-### Durante el despliegue ⚙️
+## Durante el despliegue ⚙️
 
 #### 3. Instalación de dependencias automáticamente para servicios en Node.js 🚀
 ```bash
@@ -189,7 +189,7 @@ npm install  # Incluye uuid y aws-sdk
 npx serverless deploy --stage <STAGE>
 ```
 
-### Para eliminar recursos 🔥🚮
+## Para eliminar recursos 🔥🚮
 
 #### 5. Elimina los recursos de un entorno específico cuando ya no sean necesarios 💥
 
@@ -210,11 +210,11 @@ sh scripts/remove-test.sh
 sh scripts/remove-prod.sh
 ```
 
-### Postman Collection 📬
+## Postman Collection 📬
 
 #### 6. El archivo de colección de Postman está configurado para el entorno dev, pero se puede usar también en prod o test 🌟
 
-### Recursos adicionales 📚
+## Recursos adicionales 📚
 
 #### 7. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
 **Detalles de las tablas**: [Spreadsheets](https://docs.google.com/spreadsheets/d/1ZrNYsk9QapbMuMr6at_sfBPg8t-TYu4w1VwyiUadsfo/edit?gid=0#gid=0) 🔗
