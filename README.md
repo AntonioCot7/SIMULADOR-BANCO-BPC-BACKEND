@@ -4,10 +4,6 @@ Este repositorio contiene el **backend** de un simulador de banco llamado **BPC*
 
 El backend se utiliza para gestionar los datos y la lógica de negocio del simulador, y está estructurado para ser desplegado fácilmente en diferentes entornos utilizando **AWS Lambda**, **API Gateway** y **DynamoDB**.
 
-## Repositorio 📦
-
-**GitHub**: [Simulador Banco BPC Backend](https://github.com/AntonioCot7/SIMULADOR-BANCO-BPC-BACKEND.git)
-
 ---
 
 ## Requisitos 🔧
