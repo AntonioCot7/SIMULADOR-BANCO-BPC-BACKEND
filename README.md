@@ -152,16 +152,67 @@ El backend implementa un sistema de seguridad basado en tokens para la autentica
 
 ---
 
-## Despliegue 🚀
+# Pasos para desplegar los servicios 📦
 
-### Estructura de los Scripts de Despliegue
+# 1. Clona el repositorio desde GitHub 🖥️
+echo "Clonando el repositorio..."
+git clone https://github.com/AntonioCot7/SIMULADOR-BANCO-BPC-BACKEND.git
+cd SIMULADOR-BANCO-BPC-BACKEND
 
-Los scripts en la carpeta `Deploy/scripts` están organizados para desplegar el backend en tres entornos: **dev**, **prod** y **test**. Estos scripts gestionan el despliegue de cada uno de los microservicios de forma automatizada.
+# 2. Navega a la carpeta Deploy y selecciona el script correspondiente al entorno 🌍
 
-#### Desplegar en **dev**, **prod** o **test**:
+# Para desarrollo (dev) 🛠️
+echo "Desplegando en el entorno de desarrollo (dev)..."
+sh scripts/deploy-dev.sh
 
-1. Clona el repositorio y navega a la carpeta `Deploy`.
-2. Abre la terminal y ejecuta el siguiente comando para dar permisos de ejecución a los scripts:
+# Para pruebas (test) 🧪
+echo "Desplegando en el entorno de pruebas (test)..."
+sh scripts/deploy-test.sh
 
-   ```bash
-   chmod +x deploy-dev.sh deploy-prod.sh deploy-test.sh
+# Para producción (prod) 🌟
+echo "Desplegando en el entorno de producción (prod)..."
+sh scripts/deploy-prod.sh
+
+# Durante el despliegue ⚙️
+
+# 3. Instalación de dependencias automáticamente para servicios en Node.js 🚀
+echo "Instalando dependencias..."
+npm install  # Incluye uuid y aws-sdk
+
+# 4. Despliegue de cada microservicio utilizando serverless deploy 🔥
+echo "Desplegando microservicios con Serverless..."
+npx serverless deploy --stage <STAGE>
+
+# 5. Verifica los recursos desplegados en AWS y las conexiones entre microservicios 🛠️🌐
+echo "Verificando recursos en AWS..."
+# Aquí podrías agregar comandos para hacer esta verificación
+
+# Para eliminar recursos 🔥🚮
+
+# 6. Elimina los recursos de un entorno específico cuando ya no sean necesarios 💥
+
+# Usa los scripts correspondientes para eliminar los recursos del entorno elegido
+
+# Para desarrollo (dev) 🧹
+echo "Eliminando recursos del entorno de desarrollo (dev)..."
+sh scripts/remove-dev.sh
+
+# Para pruebas (test) 🧽
+echo "Eliminando recursos del entorno de pruebas (test)..."
+sh scripts/remove-test.sh
+
+# Para producción (prod) 🧨
+echo "Eliminando recursos del entorno de producción (prod)..."
+sh scripts/remove-prod.sh
+
+# Postman Collection 📬
+
+# 7. El archivo de colección de Postman está configurado para el entorno dev, pero se puede usar también en prod o test 🌟
+echo "Asegúrate de tener el archivo de colección de Postman correctamente configurado."
+
+# Recursos adicionales 📚
+
+# 8. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
+echo "Consulta las especificaciones de las tablas en el siguiente enlace:"
+echo "Especificación de Tablas, esto es un link." 🔗
+
