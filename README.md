@@ -213,11 +213,9 @@ sh scripts/remove-prod.sh
 ## Postman Collection 📬
 
 ### 6. El archivo de colección de Postman está configurado para el entorno dev, pero se puede usar también en prod o test 🌟
-echo "Asegúrate de tener el archivo de colección de Postman correctamente configurado."
 
 ## Recursos adicionales 📚
 
 ### 7. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
-echo "Consulta las especificaciones de las tablas en el siguiente enlace:"
-echo "Especificación de Tablas, esto es un link." 🔗
+[Detalles de las tablas]([https://github.com/AntonioCot7/SIMULADOR-BANCO-BPC-BACKEND.git](https://docs.google.com/spreadsheets/d/1ZrNYsk9QapbMuMr6at_sfBPg8t-TYu4w1VwyiUadsfo/edit?gid=0#gid=0)) 🔗
 
