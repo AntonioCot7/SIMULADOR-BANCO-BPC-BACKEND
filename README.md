@@ -217,5 +217,5 @@ sh scripts/remove-prod.sh
 ## Recursos adicionales 📚
 
 ### 7. Accede a los spreadsheets con detalles de las tablas y atributos (PK, SK, GSI, LSI):
-[Detalles de las tablas]([https://github.com/AntonioCot7/SIMULADOR-BANCO-BPC-BACKEND.git](https://docs.google.com/spreadsheets/d/1ZrNYsk9QapbMuMr6at_sfBPg8t-TYu4w1VwyiUadsfo/edit?gid=0#gid=0)) 🔗
+**Detalles de las tablas**: [Detalles de las tablas](https://docs.google.com/spreadsheets/d/1ZrNYsk9QapbMuMr6at_sfBPg8t-TYu4w1VwyiUadsfo/edit?gid=0#gid=0) 🔗
 
