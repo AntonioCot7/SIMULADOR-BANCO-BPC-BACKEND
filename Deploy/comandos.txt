@@ -1,0 +1,3 @@
+chmod +x remove-all.sh deploy-all.sh
+./deploy-all.sh
+./remove-all.sh

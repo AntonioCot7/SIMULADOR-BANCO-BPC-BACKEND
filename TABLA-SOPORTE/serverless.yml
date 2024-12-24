@@ -1,0 +1,110 @@
+org: antoniocot
+service: api-soporte
+
+provider:
+  name: aws
+  runtime: nodejs16.x  # Cambiar de python3.12 a nodejs18.x
+  memorySize: 1024
+  timeout: 30
+  iam:
+    role: arn:aws:iam::316129865556:role/LabRole
+  environment:
+    SOPORTE_TABLE: TABLA-SOPORTE-${sls:stage}
+    GSI: ${sls:stage}-soporte-EstadoIndex_at-index
+
+functions:
+  CrearSolicitud:
+    handler: lambdas/CrearSolicitud.lambda_handler  # Cambiar el manejador de Python a Node.js
+    events:
+      - http:
+          path: /soporte/crear
+          method: post
+          cors: true
+          integration: lambda
+
+  EliminarSolicitud:
+    handler: lambdas/EliminarSolicitud.lambda_handler  # Actualizar para usar código Node.js
+    events:
+      - http:
+          path: /soporte/eliminar
+          method: delete
+          cors: true
+          integration: lambda
+
+  EditarSolicitud:
+    handler: lambdas/EditarSolicitud.lambda_handler  # Lo mismo aquí
+    events:
+      - http:
+          path: /soporte/editar
+          method: put
+          cors: true
+          integration: lambda
+
+  ObtenerSolicitud:
+    handler: lambdas/ObtenerSolicitud.lambda_handler  # Actualizar manejador
+    events:
+      - http:
+          path: /soporte/obtener
+          method: post
+          cors: true
+          integration: lambda
+
+  ListarSolicitudes:
+    handler: lambdas/ListarSolicitudes.lambda_handler  # Cambiar a Node.js
+    events:
+      - http:
+          path: /soporte/listar
+          method: post
+          cors: true
+          integration: lambda
+
+  ListarSolicitudesPorUsuario:
+    handler: lambdas/ListarSolicitudesPorUsuario.lambda_handler  # Actualizar para Node.js
+    events:
+      - http:
+          path: /soporte/listar-usuario
+          method: post
+          cors: true
+          integration: lambda
+
+  ResponderSolicitud:
+    handler: lambdas/ResponderSolicitud.lambda_handler  # Cambiar a Node.js
+    events:
+      - http:
+          path: /soporte/responder
+          method: post
+          cors: true
+          integration: lambda
+
+resources:
+  Resources:
+    SoporteTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.SOPORTE_TABLE}
+        AttributeDefinitions:
+          - AttributeName: usuario_id
+            AttributeType: S
+          - AttributeName: ticket_id
+            AttributeType: S
+          - AttributeName: estado
+            AttributeType: S
+          - AttributeName: fecha
+            AttributeType: S
+        KeySchema:
+          - AttributeName: usuario_id
+            KeyType: HASH
+          - AttributeName: ticket_id
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true        
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:provider.environment.GSI}
+            KeySchema:
+              - AttributeName: estado
+                KeyType: HASH
+              - AttributeName: fecha
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL

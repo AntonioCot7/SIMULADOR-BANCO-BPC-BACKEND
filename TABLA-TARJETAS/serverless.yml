@@ -1,0 +1,100 @@
+org: antoniocot
+service: api-tarjetas
+
+provider:
+  name: aws
+  runtime: python3.12
+  memorySize: 1024
+  timeout: 30
+  iam:
+    role: arn:aws:iam::316129865556:role/LabRole
+  environment:
+    TARJETAS_TABLE: TABLA-TARJETAS-${sls:stage}
+    CUENTAS_TABLE: TABLA-CUENTA-${sls:stage}
+    USUARIOS_TABLE: TABLA-USUARIOS-${sls:stage}
+    GSI: ${sls:stage}-tarjetas-index
+
+functions:
+  CrearTarjeta:
+    handler: lambdas/CrearTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/crear
+          method: post
+          cors: true
+          integration: lambda
+  ListarTarjetas:
+    handler: lambdas/ListarTarjetas.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/listar
+          method: post
+          cors: true
+          integration: lambda
+  BuscarTarjeta:
+    handler: lambdas/BuscarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/buscar
+          method: post
+          cors: true
+          integration: lambda
+  ModificarTarjeta:
+    handler: lambdas/ModificarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/modificar
+          method: put
+          cors: true
+          integration: lambda
+  EliminarTarjeta:
+    handler: lambdas/EliminarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/eliminar
+          method: delete
+          cors: true
+          integration: lambda
+  RecargarTarjeta:
+    handler: lambdas/RecargarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/recargar
+          method: post
+          cors: true
+          integration: lambda
+  RetirarTarjeta:
+    handler: lambdas/RetirarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/retirar
+          method: post
+          cors: true
+          integration: lambda
+
+resources:
+  Resources:
+    TarjetasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TARJETAS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: cuenta_id
+            AttributeType: S
+          - AttributeName: tarjeta_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: cuenta_id
+            KeyType: HASH
+          - AttributeName: tarjeta_id
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true        
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:provider.environment.GSI}
+            KeySchema:
+              - AttributeName: tarjeta_id
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL

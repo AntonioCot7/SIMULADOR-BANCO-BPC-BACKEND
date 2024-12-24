@@ -1,0 +1,122 @@
+org: antoniocot
+service: api-pagos
+
+provider:
+  name: aws
+  runtime: python3.12
+  memorySize: 1024
+  timeout: 30
+  iam:
+    role: arn:aws:iam::316129865556:role/LabRole
+  environment:
+    PAGOS_TABLE: TABLA-PAGOS-${sls:stage}
+    TARJETAS_TABLE: TABLA-TARJETAS-${sls:stage}
+    GSI: ${sls:stage}-pagos-created_at-index
+    LSI: ${sls:stage}-pagos-index    
+
+functions:
+  CrearPagoDeuda:
+    handler: lambdas/CrearPagoDeuda.lambda_handler
+    events:
+      - http:
+          path: /pago/deuda
+          method: post
+          cors: true
+          integration: lambda
+
+  CrearPagoServicio:
+    handler: lambdas/CrearPagoServicio.lambda_handler
+    events:
+      - http:
+          path: /pago/servicio
+          method: post
+          cors: true
+          integration: lambda
+
+  RealizarPago:
+    handler: lambdas/RealizarPago.lambda_handler
+    events:
+      - http:
+          path: /pago/realizar
+          method: post
+          cors: true
+          integration: lambda
+
+  ObtenerPago:
+    handler: lambdas/ObtenerPago.lambda_handler
+    events:
+      - http:
+          path: /pago/obtener
+          method: post
+          cors: true
+          integration: lambda
+
+  ListarPagos:
+    handler: lambdas/ListarPagos.lambda_handler
+    events:
+      - http:
+          path: /pago/listar
+          method: post
+          cors: true
+          integration: lambda
+          
+  ActualizarPago:
+    handler: lambdas/ActualizarPago.lambda_handler
+    events:
+      - http:
+          path: /pago/actualizar
+          method: put
+          cors: true
+          integration: lambda
+
+  EliminarPago:
+    handler: lambdas/EliminarPago.lambda_handler
+    events:
+      - http:
+          path: /pago/eliminar
+          method: delete
+          cors: true
+          integration: lambda
+resources:
+  Resources:
+    PagosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.PAGOS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: usuario_id
+            AttributeType: S
+          - AttributeName: pago_id
+            AttributeType: S
+          - AttributeName: tipo
+            AttributeType: S
+          - AttributeName: fecha
+            AttributeType: S
+        KeySchema:
+          - AttributeName: usuario_id
+            KeyType: HASH
+          - AttributeName: pago_id
+            KeyType: RANGE      
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:provider.environment.GSI}
+            KeySchema:
+              - AttributeName: usuario_id
+                KeyType: HASH
+              - AttributeName: tipo
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        LocalSecondaryIndexes:
+          - IndexName: ${self:provider.environment.LSI}
+            KeySchema:
+              - AttributeName: usuario_id  # Mismo HASH que la tabla
+                KeyType: HASH
+              - AttributeName: fecha
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
