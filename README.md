@@ -185,7 +185,7 @@ npx serverless deploy --stage <STAGE>
 
 ### 5. Verifica los recursos desplegados en AWS y las conexiones entre microservicios 🛠️🌐
 echo "Verificando recursos en AWS..."
-# Aquí podrías agregar comandos para hacer esta verificación
+## Aquí podrías agregar comandos para hacer esta verificación
 
 ## Para eliminar recursos 🔥🚮
 
